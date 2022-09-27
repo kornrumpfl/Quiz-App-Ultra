@@ -1,17 +1,18 @@
 import './Card.css';
+import Tag from "../tag/Tag";
 
-function Card({question,answer,option1,option2,option3}) {
+function Card({card_data}) {
     return(
         <section className="card">
-      <h2>{question}</h2>
+      <h2>{card_data.question}</h2>
       <button className="card__button-answer" type="button">
-        Show answer
+        Answer
       </button>
-      <p className="card__answer card__answer--active">{answer}</p>
+      <p className="card__answer card__answer--active">{card_data.answer}</p>
       <ul className="card__tag-list">
-        <li className="card__tag-list-item">{option1}</li>
-        <li className="card__tag-list-item">{option2}</li>
-        <li className="card__tag-list-item">{option3}</li>
+      {card_data.tag.map((tag) => {
+          return <Tag tag={tag} />;
+        })}
       </ul>
       <div className="card__button-bookmark">
         <button className="card__bookmark" aria-label="bookmark" type="button">
