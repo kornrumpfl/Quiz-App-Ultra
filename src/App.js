@@ -1,4 +1,5 @@
 import './App.css';
+import { useState } from 'react';
 import Card from "./components/card/Card";
 import Header from "./components/header/Header";
 import Navigation from "./components/navigation/Navigation";
@@ -25,6 +26,10 @@ const cards = [
 ];
 
 function App() {
+  const[showClick,setShowClick]=useState(0);
+  console.log(showClick);
+  console.log(setShowClick);
+
   return (
     <div className="App">
       <Header />
@@ -33,7 +38,7 @@ function App() {
           return <Card key={card.id} card_data={card} />;
         })}
         </main>
-      <Navigation />
+      <Navigation setShowClick={setShowClick} showClick={showClick}/>
     </div>
   );
 }
