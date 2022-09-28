@@ -54,7 +54,7 @@ const cards = [
 
 function App() {
   const[showClick,setShowClick]=useState(0);
-  const[bookmarked,setBookmarked]=useState(true);
+  
 
   return (
     <div className="App">
