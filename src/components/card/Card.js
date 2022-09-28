@@ -3,6 +3,7 @@ import './Card.css';
 import Tag from "../tag/Tag";
 
 function Card({card_data}) {
+    console.log(card_data.question);
     const [showAnswer, setShowAnswer] = useState(false)
     return(
         <section className="card">

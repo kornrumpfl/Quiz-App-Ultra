@@ -1,8 +1,11 @@
 import './App.css';
 import { useState } from 'react';
-import Card from "./components/card/Card";
+
+import Cards from "./components/pages/Cards";
 import Header from "./components/header/Header";
 import Navigation from "./components/navigation/Navigation";
+import Create from './components/pages/Create';
+import Profile from './components/pages/Profile';
 
 const cards = [
   {
@@ -27,16 +30,12 @@ const cards = [
 
 function App() {
   const[showClick,setShowClick]=useState(0);
-  console.log(showClick);
-  console.log(setShowClick);
 
   return (
     <div className="App">
       <Header />
         <main className = "app__main">
-        {cards.map((card) => {
-          return <Card key={card.id} card_data={card} />;
-        })}
+          {showClick===1?<Cards cards={cards}/>:showClick===2?<Cards cards={cards}/>:showClick===3?<Create/>:showClick===4?<Profile/>:<></>}
         </main>
       <Navigation setShowClick={setShowClick} showClick={showClick}/>
     </div>

@@ -1,9 +1,7 @@
-import { useState } from 'react';
 import './Navigation.css';
 
 
 function Navigation({setShowClick,showClick}) {
-
 
     return(
         <nav className="navigation">
