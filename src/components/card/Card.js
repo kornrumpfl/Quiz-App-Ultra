@@ -1,14 +1,16 @@
+import { useState } from 'react';
 import './Card.css';
 import Tag from "../tag/Tag";
 
 function Card({card_data}) {
+    const [showAnswer, setShowAnswer] = useState(false)
     return(
         <section className="card">
       <h2>{card_data.question}</h2>
-      <button className="card__button-answer" type="button">
-        Answer
+      <button className="card__button-answer" type="button" onClick={()=>setShowAnswer(!showAnswer)}>
+      {showAnswer===false?"Show answer":"Hide answer"}
       </button>
-      <p className="card__answer card__answer--active">{card_data.answer}</p>
+      <p className={showAnswer===true?"card__answer card__answer--active":"card__answer"}>{card_data.answer}</p>
       <ul className="card__tag-list">
       {card_data.tag.map((tag) => {
           return <Tag tag={tag} />;
