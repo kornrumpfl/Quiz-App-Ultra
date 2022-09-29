@@ -1,6 +1,5 @@
 import './App.css';
 import { useState } from 'react';
-
 import Cards from "./components/pages/Cards";
 import Header from "./components/header/Header";
 import Navigation from "./components/navigation/Navigation";
@@ -58,15 +57,45 @@ function App() {
   const[cards,setCards]=useState(initialCards);
   
   function appendCard(question, answer, ...tag){
-    console.log(tag);
       setCards([...cards,{id:nanoid(),question:question,answer:answer,tag:tag,bookmarked:false}])
+  }
+
+  function deleteCard(cardId){
+    setCards(cards.filter(({id}) => cardId !== id));
+  }
+
+  function toggleBookmark(cardId) {
+    setCards((cards) =>
+      cards.map((card) => ({
+        ...card,
+        bookmarked: cardId === card.id ? !card.bookmarked : card.bookmarked,
+      }))
+    );
   }
 
   return (
     <div className="App">
       <Header />
         <main className = "app__main">
-          {showClick===1?<Cards cards={cards}/>:showClick===2?<Cards cards={cards.filter(card=>{return card.bookmarked==="true"})}/>:showClick===3?<div><Create onHandleSubmit={appendCard}/></div>:showClick===4?<Profile/>:<></>}
+          {showClick===1?
+          <Cards
+            cards={cards} 
+            onDelete={deleteCard}
+            onBookmark={toggleBookmark}
+            />
+            :showClick===2?
+              <Cards 
+              cards={cards.filter(card=>{return card.bookmarked==="true"})}
+              onDelete={deleteCard}
+              onBookmark={toggleBookmark}
+              />
+              :showClick===3?
+                  <div>
+                  <Create onHandleSubmit={appendCard}/>
+                  </div>
+                    :showClick===4?<Profile/>
+                      :<>
+                      </>}
         </main>
       <Navigation setShowClick={setShowClick} showClick={showClick}/>
       

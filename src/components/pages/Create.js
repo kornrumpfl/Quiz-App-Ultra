@@ -1,4 +1,3 @@
-import Icon from "./Icon";
 import '../pages/Create.css'
 import './Icon.css';
 
@@ -29,7 +28,6 @@ function Create({onHandleSubmit}){
                             id="answer"
                             rows="7"
                             name="answer"
-                            data-js="input-answer"
                         ></textarea>
                         <label htmlFor="tag">Tag:</label>
                         <input id="tag1" type="text" name="tag1" />

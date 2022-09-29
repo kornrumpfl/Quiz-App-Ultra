@@ -1,6 +1,5 @@
 .form {
-	padding: 10rem 2rem 3rem 2rem;
-	/* max-width: 45rem; */
+	padding: 1rem 1rem 2rem 1rem;
 	margin: 0 auto;
 	display: grid;
 	flex-direction: column;

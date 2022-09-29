@@ -73,3 +73,28 @@
   fill: currentcolor;
   width: 2em;
 }
+
+.card__button-trashcan {
+  position: absolute;
+  left: 1em;
+  top: -1.5em;
+}
+
+.card__trashcan {
+  border: none;
+  font-size: 1em;
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  background: var(--secondary);
+  color: var(--white);
+}
+
+.card__trashcan:hover {
+  cursor: pointer;
+}
+
+.card__trashcan-icon {
+  fill: currentcolor;
+  width: 2em;
+}
