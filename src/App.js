@@ -6,6 +6,9 @@ import Navigation from "./components/navigation/Navigation";
 import Create from './components/pages/Create';
 import Profile from './components/pages/Profile';
 import {nanoid} from "nanoid";
+import {Routes, Route} from "react-router-dom";
+
+
 
 const initialCards = [
   {
@@ -53,7 +56,6 @@ const initialCards = [
 
 
 function App() {
-  const[showClick,setShowClick]=useState(0);
   const[cards,setCards]=useState(initialCards);
   
   function appendCard(question, answer, ...tag){
@@ -61,6 +63,7 @@ function App() {
   }
 
   function deleteCard(cardId){
+    alert(cardId)
     setCards(cards.filter(({id}) => cardId !== id));
   }
 
@@ -77,28 +80,28 @@ function App() {
     <div className="App">
       <Header />
         <main className = "app__main">
-          {showClick===1?
-          <Cards
-            cards={cards} 
-            onDelete={deleteCard}
-            onBookmark={toggleBookmark}
-            />
-            :showClick===2?
-              <Cards 
-              cards={cards.filter(card=>{return card.bookmarked==="true"})}
-              onDelete={deleteCard}
-              onBookmark={toggleBookmark}
-              />
-              :showClick===3?
-                  <div>
-                  <Create onHandleSubmit={appendCard}/>
-                  </div>
-                    :showClick===4?<Profile/>
-                      :<>
-                      </>}
+          <Routes>
+              <Route path="/" element={<Cards
+                cards={cards} 
+                onDelete={deleteCard}
+                onBookmark={toggleBookmark}
+              />} />
+              
+              <Route path="/bookmark" element={<Cards
+                cards={cards.filter(card=>{return card.bookmarked==="true"})}
+                onDelete={deleteCard}
+                onBookmark={toggleBookmark}
+              />} />
+              
+              <Route path="/create" element={<Create
+                onHandleSubmit={appendCard}
+              />} />
+              
+              <Route path="/profile" element={<Profile />} />
+          
+          </Routes>
         </main>
-      <Navigation setShowClick={setShowClick} showClick={showClick}/>
-      
+      <Navigation /> 
     </div>
   );
 }

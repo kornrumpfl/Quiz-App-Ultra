@@ -1,7 +1,10 @@
 import '../pages/Create.css'
 import './Icon.css';
+import {useNavigate} from "react-router-dom"
 
 function Create({onHandleSubmit}){
+    const navigate = useNavigate();
+
     function onSubmit(event){
         event.preventDefault();
         const form = event.target;
@@ -11,6 +14,7 @@ function Create({onHandleSubmit}){
         const {tag2} = form.elements;
         const {tag3} = form.elements;
         onHandleSubmit(question.value,answer.value,tag1.value,tag2.value,tag3.value);
+        navigate("/");
         form.reset();
     }
     return(
